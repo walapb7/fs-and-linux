@@ -1,7 +1,9 @@
 require 'sinatra'
 
 get '/' do
-  erb :application, layout: false do
-    erb :index
-  end
+  erb :index
+end
+
+get '/ch_1' do
+  erb :ch_1
 end
