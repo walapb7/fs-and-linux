@@ -1,0 +1,14 @@
+.align-center{
+  text-align: center;
+}
+.card img{
+  display: block;
+  margin: auto;
+}
+.card-cont{
+  padding: 20px 0px;
+}
+
+.main-section{
+  background-color: #F2F2F2;
+}
