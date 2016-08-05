@@ -27,3 +27,7 @@ body{
   background-color: #F2F2F2;
   font-family: 'Roboto Slab' !important; 
 }
+#carousel-linux-os img{
+  display: block;
+  margin: auto;
+}
