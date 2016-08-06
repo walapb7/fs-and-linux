@@ -22,6 +22,15 @@ get '/ch_2' do
   end
 end
 
+get '/ch_4' do
+  @title = "GNU/Linux"
+  erb :_ch_layout do
+    @next = "/ch_3"
+    @prev = "/ch_5"
+    erb :ch_2
+  end
+end
+
 get '/ch_5' do
   @title = "Distribuciones Linux"
   erb :_ch_layout do
