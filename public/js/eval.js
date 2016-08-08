@@ -12,14 +12,16 @@ $(document).ready(function(){
         data: $(form).serialize(),
         success: function(data){
           console.log(data);
+          console.log(form);
+          console.log(target_url)
+          // $("#layout_cont").fadeOut(400);
           $("#eval_cont").html(data);
+          
+          // $("#layout_cont").fadeIn(300);
         }
       })
     });
   }
-
+  
   send_eval_conf("#form_eval_1", "/eval_2");
-  send_eval_conf("#form_eval_2", "/eval_3");
-  send_eval_conf("#form_eval_4", "/eval_5");
-
 })

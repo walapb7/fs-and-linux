@@ -1,15 +1,19 @@
 <h1 class="text-primary">Sección V - Distribuciones de Linux</h1>
 <small class="text-muted">Resuelva el Puzzle intercambiando las piezas y volviendo a colocar la imagen en su estado original en el menor tiempo posible.</small>
 <hr>
-<form action="">
+<h5>Tiempo: <span id="timer">0</span> Segundos</h5>
+<form id="form_eval_5">
   <div id="canvas_cont">
     <canvas id="canvas"></canvas>
     <button id="finish_btn" class="hidden btn btn-primary">Finalizar</button>
   </div>
+  <input id="tinput" name="tinput" type="hidden">
 </form>
 
 <script>
 $(document).ready(function(){
+    send_eval_conf("#form_eval_5", "/eval_final");
+    
     const PUZZLE_DIFFICULTY = 3;
     const PUZZLE_HOVER_TINT = '#009900';
      
@@ -29,7 +33,7 @@ $(document).ready(function(){
 
     _img = new Image();
     _img.addEventListener('load',onImage,false);
-    _img.src = "/img/linux-logos/os2.png";
+    _img.src = "/img/linux-logos/<%= @img %>.png";
 
     // Execute after img has been loaded, calculates the pieces width and height
     function onImage(e){
@@ -99,6 +103,7 @@ $(document).ready(function(){
     }
 
     function shufflePuzzle(){
+      startTimer();
       _pieces = shuffleArray(_pieces);
       _stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
       var i;
@@ -233,8 +238,23 @@ $(document).ready(function(){
       document.onmousemove = null;
       document.onmouseup = null;
       $("#finish_btn").removeClass("hidden");
-      // initPuzzle();
+      $("#tinput").val($("#timer").text());
+      $("#timer").addClass("text-success");
+      stopTimer();
 
+    }
+    // Timer
+    var timerInterval = null;
+    function startTimer(){
+      var start = new Date;
+
+      timerInterval = setInterval(function() {
+      $('#timer').text(Math.round((new Date - start) / 1000, 0));
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
     }
 });
 </script>
