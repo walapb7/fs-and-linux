@@ -1,0 +1,57 @@
+<h1 class="text-primary">Sección II - Software Libre y Open Source</h1>
+<small class="text-muted">Arrastra los terminos de la derecha a su definición correspondiente</small>
+<hr>
+<form id="form_eval_2">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <p class="mb0">Permite ver el código fuente pero no necesariamente distribuirlo</p>
+      <div id="drop1" class="dropable_content align-center" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <input name="drop_1" type="hidden" class="term_input">
+    </div>
+    <hr>
+    <div class="form-group">
+      <p class="mb0">Es posible ver, editar y distribuir el código fuente</p>
+      <div id="drop2" class="dropable_content align-center" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <input name="drop_2" type="hidden" class="term_input">
+    </div>
+    <hr>
+    <div class="form-group">
+      <p class="mb0">No hay acceso al código fuente</p>
+      <div id="drop3" class="dropable_content align-center" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <input name="drop_3" type="hidden" class="term_input">
+    </div>
+    <button type="submit" class="btn btn-primary">Finalizar</button>
+  </div>
+  
+  <div class="col-sm-6 align-center">
+    <p data-option="1" id="drag1" class="draggable_text text-success" draggable="true"
+    ondragstart="drag(event)">Software Libre</p>
+    <p data-option="2" id="drag2" class="draggable_text text-warning" draggable="true"
+    ondragstart="drag(event)">Código Abierto</p>
+    <p data-option="3" id="drag3" class="draggable_text text-danger" draggable="true"
+    ondragstart="drag(event)">Software Privativo</p>
+  </div>
+</div>
+
+</form>
+
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var element_id = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(element_id));
+    $textElem = $("#"+element_id);
+    var targetId = ev.target.id;
+    $termInput = $("#"+targetId).parent().find(".term_input");
+    $termInput.val($textElem.data("option"));
+}
+</script>
